@@ -1,22 +1,13 @@
 // App.tsx
 import React, { useEffect, useRef } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './pages/home';
-import DetailScreen from './pages/details';
-import LoginScreen from './pages/login'
 import { Animated } from 'react-native';
-
-const Stack = createNativeStackNavigator();
+import StackNavigation from './Navigation/StackNav/Stack';
 
 const App: React.FC = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Detail" component={DetailScreen} />
-      </Stack.Navigator>
+      <StackNavigation/>
     </NavigationContainer>
   );
 };

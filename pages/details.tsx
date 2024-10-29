@@ -122,7 +122,7 @@ const Detail: React.FC<{ route: { params: { title: string, imageBig: any } }, na
           style={styles.backIcon}
           onPress={() => navigation.goBack()}
         >
-          <Entypo name="chevron-left" size={32} color="#000000" />
+          <Entypo name="chevron-left" size={32} color="#FFFFFF" />
         </TouchableOpacity>
         <View style={styles.titlesWrapper}>
           <Text style={styles.itemTitle}>{title}</Text>
@@ -131,7 +131,7 @@ const Detail: React.FC<{ route: { params: { title: string, imageBig: any } }, na
 
       <View style={styles.descriptionWrapper}>
         <View style={styles.descriptionTextWrapper}>
-          <Text style={styles.descriptionTitle}>Description</Text>
+          <Text style={styles.descriptionTitle}>Description:</Text>
           <Text style={styles.descriptionText}>{details[title]}</Text>
         </View>
 
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   },
   descriptionWrapper: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '',
     marginTop: -20,
     borderRadius: 25,
     alignItems: 'center',
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   descriptionTitle: {
     fontWeight: 'bold',
     fontSize: 24,
-    color: '#000',
+    color: '#fff',
   },
   descriptionText: {
     marginTop: 20,

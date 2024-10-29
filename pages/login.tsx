@@ -6,231 +6,244 @@ import padlockIcon from '../assets/padlock.png';
 import mailIcon from '../assets/mail.png'; 
 import facebookIcon from '../assets/facebook.png'; 
 import twitterIcon from '../assets/twitter.png'; 
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { stackScreens } from '../Navigation/StackNav/Stack';
 
-const Login = ({ navigation }) => {
-  return (
-    <View style={styles.background}>
-      <SafeAreaView>
-        <ScrollView>
+type propsType= NativeStackScreenProps<stackScreens, "Login">
 
-          {/* Logo */}
-          <View style={styles.mainPicture}>
-            <Image 
-              style={styles.imageSize} 
-              source={logopic} // Updated logo path to match the app's theme
-            />
-          </View>
+const Login = (props:propsType) => {
 
-          {/* Heading */}
-          <View style={styles.container}>
-            <Text style={styles.loginText}>Welcome Back!</Text>
-            <Text style={styles.subText}>Login to continue learning</Text>
-          </View>
+  const{navigation} = props;
 
+  const gotoLogin = () => { navigation.navigate("HomeEntry");};
+
+
+    return(
+      <View style={styles.background}>
+        <SafeAreaView>
+          <ScrollView>
+  
+            {/* Logo */}
+            <View style ={styles.mainPicture}>
+              <Image 
+              style ={styles.imageSize}
+              source={require('../assets/logopic.png')}/>
+            </View>
+  
+            {/* Heading */}
+            <View style ={styles.container}>
+              <Text style ={styles.loginText}> Login </Text>
+            </View>
+  
           {/* TextInput and Icon container */}
           <View style={styles.textInputContainer}>
-
+  
             {/* Username input with profile icon */}
-            <View style={styles.inputContainers}>
+            <View style={styles.inputContainers} >
               <Image 
-                source={profileIcon} 
-                style={styles.iconSizeOne}
-              />
-              <TextInput 
-                placeholder='Enter your username'
-                placeholderTextColor={'#808080'} // Softer placeholder color
-                style={styles.inputStyle}
-              />
+              source={require('../assets/profile.png')}
+              style={styles.iconSizeOne}/>
+              
+            <TextInput 
+              placeholder='Enter your username'
+              placeholderTextColor={'black'}
+              style ={styles.inputStyle}/>
             </View>
-
+  
+          
             {/* Password input with padlock icon */}
             <View style={styles.inputContainers}>
               <Image 
-                source={padlockIcon} 
-                style={styles.iconSizeOne}
-              />
+              source={require('../assets/padlock.png')}
+              style={styles.iconSizeOne}/>
+  
+              
               <TextInput 
-                placeholder='Enter your password'
-                placeholderTextColor={'#808080'}
-                secureTextEntry={true} // Enable secure input for passwords
-                style={styles.inputStyle}
-              />
+              placeholder='Enter your password'
+              placeholderTextColor={'black'}
+              style ={styles.lastInputstyle}/>
             </View>
-
+  
             {/* 'Forget your password' text */}
             <TouchableOpacity style={styles.textRight}>
               <Text style={styles.textRightFormat}>Forgot your password?</Text>
             </TouchableOpacity>
-
-            {/* Login Button */}
+  
+            {/* Button */}
             <View style={styles.buttonContainer}>
               <TouchableOpacity 
-                style={styles.buttonStyle}
-                onPress={() => navigation.navigate('Home')}>
+              style={styles.buttonStyle}
+              onPress={gotoLogin}>
                 <Text style={styles.buttonTextStyle}>Login</Text>
               </TouchableOpacity>
             </View>
-
+  
             {/* Sign up text */}
             <View style={styles.container}>
-              <Text style={styles.signupText}>Or sign in using</Text>
-
-              {/* Icon container for social logins */}
+              <Text style={styles.signupText}>Sign up using</Text>
+  
+              {/* icon container */}
               <View style={styles.iconContainer}>
+  
                 {/* Gmail icon */}
                 <TouchableOpacity>
                   <Image 
-                    source={mailIcon} 
-                    style={styles.iconSizeTwo} 
-                  />
+                  source={require('../assets/mail.png')}
+                  style={styles.iconSizeTwo}/>
                 </TouchableOpacity>
-
-                {/* Facebook icon */}
+  
+                {/* Facebook icon*/}
                 <TouchableOpacity>
                   <Image 
-                    source={facebookIcon} 
-                    style={styles.iconSizeTwo} 
-                  />
+                  source={require('../assets/facebook.png')}
+                  style={styles.iconSizeTwo}/>
                 </TouchableOpacity>
-
+  
                 {/* Twitter icon */}
                 <TouchableOpacity>
                   <Image 
-                    source={twitterIcon} 
-                    style={styles.iconSizeTwo} 
-                  />
+                  source={require('../assets/twitter.png')}
+                  style={styles.iconSizeTwo}/>
                 </TouchableOpacity>
               </View>
             </View>
+          
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    </View>
-  );
-};
+          </ScrollView>
+        </SafeAreaView>
+      </View>
+    );
+  }
+
+ 
 
 const styles = StyleSheet.create({
-    background: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#38b6ff', // Gradient colors can be added here later
-    },
-    mainPicture: {
-      alignItems: 'center',
-      marginTop: 40,
-      marginBottom: 20,
-
-    },
-    imageSize: {
-      width: 180,
-      height: 180,
-      alignItems: 'center'
-    },
-    container: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginVertical: 10,
-      width: '90%',
-    },
-    loginText: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      color: '#fff',
-      marginBottom: 10,
-      alignItems: 'center'
-    },
-    subText: {
-      fontSize: 14,
-      color: '#ffffff99',
-      marginBottom: 30,
-      alignItems: 'center'
-    },
-    textInputContainer: {
-      width: '90%',
-      marginBottom: 20,
-      alignItems: 'center'
-    },
-    inputContainers: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      borderWidth: 1,
-      borderColor: '#fff',
-      borderRadius: 25,
-      padding: 10,
-      marginBottom: 15,
-      backgroundColor: '#38b6ff', // Add slight transparency
-    },
-    iconSizeOne: {
-      width: 24,
-      height: 24,
-      marginRight: 10,
-      alignItems: 'center'
-    },
-    inputStyle: {
-      flex: 1,
-      fontSize: 16,
-      color: '#fff',
-      alignItems: 'center'
-    },
-    textRight: {
-      marginBottom: 20,
-      marginRight: 30,
-      alignItems: 'center'
-    },
-    textRightFormat: {
-      color: '#ffffff99', // Softer white for clickable text
-      fontSize: 14,
-      alignItems: 'center'
-    },
-    buttonContainer: {
-      alignItems: 'center',
-      marginBottom: 30,
-      width: '100%',
-    },
-    buttonStyle: {
-      backgroundColor: '#fff',
-      paddingVertical: 15,
-      paddingHorizontal: 20,
-      borderRadius: 25,
-      width: '80%',
-      alignItems: 'center',
-      marginBottom: 20,
-      shadowColor: '#000',
-      shadowOpacity: 0.2,
-      shadowOffset: { width: 0, height: 2 },
-    },
-    buttonTextStyle: {
-      color: '#38b6ff', // Matching the blue of the background for text
-      fontSize: 16,
-      fontWeight: '600',
-      alignItems: 'center'
-    },
-    signupText: {
-      fontSize: 14,
-      color: '#ffffff99',
-      marginBottom: 15,
-      alignItems: 'center'
-    },
-    iconContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      width: '60%',
-      alignSelf: 'center',
-    },
-    iconSizeTwo: {
-      width: 50,
-      height: 50,
-    },
-    twitterButton: {
-      width: '100%',
-      backgroundColor: '#1DA1F2',
-      paddingVertical: 12,
-      paddingHorizontal: 20,
-      borderRadius: 25,
-      marginBottom: 20,
-      alignItems: 'center',
-    },
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 45,
+  },
+  selectListContainer: {
+    marginLeft: 25,
+    marginRight: 25,
+    flexDirection: 'column',
+    marginBottom: 45
+  },
+  selectListStyle: {
+    backgroundColor: '#CECECE',
+    marginBottom: 50
+  },
+  coursesContainer: {
+    paddingTop: 20,
+  },
+  coursesHeading: {
+    fontSize: 25,
+  },
+  aboutUsContainer: {
+    paddingTop: 20,
+    backgroundColor: 'black',
+    paddingBottom: 20
+  },
+  homeTextContainer: {
+    marginLeft: 25,
+    marginRight: 25,
+    paddingBottom: 25
+  },
+  aboutUsHeading: {
+    color: '#ddd7d6',
+    fontSize: 25,
+  },
+ 
+  aboutUsParagraph: {
+    color: '#ddd7d6',
+    fontSize: 18
+  },
+  buttonContainer: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 40,
+    paddingTop: 15,
+  },
+  buttonTextStyle: {
+    color: 'white',
+    paddingVertical: 10,
+    fontSize: 25,
+    marginRight: 10,
+    marginLeft: 10,
+  },
+  buttonStyle: {
+    backgroundColor: '#000000',
+    borderWidth: 3,
+    height: 60,
+    borderRadius: 6,
+  },
+  background: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#38b6ff', 
+  },
+  textInputContainer: {
+    marginLeft: 50,
+    marginRight: 50,
+  },
+  inputContainers: {
+    flexDirection: 'row'
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    marginTop: 25,
+    marginBottom: 25,
+  },
+  imageSize: {
+    height: 350,
+    width: 350,
+  },
+  iconSizeOne: {
+    width: 25,
+    height: 25,
+  },
+  iconSizeTwo: {
+    width: 60,
+    height: 60,
+    marginLeft: 55
+  },
+  loginText: {
+    color: 'black',
+    fontWeight: 'bold',
+    paddingTop: 10,
+    fontSize: 35,
+  },
+  mainPicture: {
+    paddingTop: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  inputStyle: {
+    borderBottomWidth: 2,
+    borderBottomColor: 'black',
+    marginBottom: 30,
+    marginLeft: 15,
+    paddingEnd: 330,
+  },
+  lastInputstyle: {
+    borderBottomWidth: 2,
+    borderBottomColor: 'black',
+    marginBottom: 10,
+    marginLeft: 15,
+    paddingEnd: 330,
+  },
+  textRight: {
+    alignItems: 'flex-end'
+  },
+  textRightFormat: {
+    fontSize: 15,
+  },
+  signupText: {
+    fontSize: 35,
+  },
   });
   
 

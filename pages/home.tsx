@@ -9,6 +9,8 @@ import fifthImage from '../assets/lifeSkills.png';
 import sixthImage from '../assets/sewing.png';
 import seventhImage from '../assets/landScaping.png';
 import logo from '../assets/logo.png';
+import Button from '../Calculator/Button';
+import { CheckBox } from '../Calculator';
 import { Picker } from '@react-native-picker/picker';
 import { SelectList } from 'react-native-dropdown-select-list';
 
@@ -33,14 +35,18 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
     setDropdownVisible(!isDropdownVisible);
   };
 
+  {/*Array storage where it later display the label*/}
+  const [courses, setCourses] = useState([]);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Image source={logo} style={styles.logo} />
 
-        <Text style={styles.titleText}>Learn More</Text>
+        {/* Six months Horizontal Scrollable Images */}
 
-        {/* Horizontal Scrollable Images */}
+        <Text style={styles.titleText}>Courses:</Text>
+
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -57,6 +63,7 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
             </TouchableOpacity>
           ))}
         </ScrollView>
+
 
         {/* About Us Section */}
         <View style={styles.aboutUsContainer}>
@@ -79,6 +86,37 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
           <Text style={styles.discountItem}>• More than three courses – 15% discount</Text>
         </View>
       )}
+    </View>
+    
+    {/*Calculator*/}
+    <View style={styles.CalculatorContainer}>
+    {/*Heading*/}
+  <Text style={styles.mainHeader}>Total and discount calculator</Text>
+
+    {/*Sub-Heading*/}
+  <Text style={styles.header}>Choose all the following course(s):</Text>
+
+
+        {/* Label is used to display the name and value is the name that goes to the server*/}
+      <CheckBox 
+      options={[
+        {label: "First Aid: R1500", value: "FirstAid"},
+        {label: "Sewing: R1500", value: "Sewing"},
+        {label: "Landscaping: R1500", value: "Landscaping"},
+        {label: "Life Skill: R1500", value: "LifeSkill"},
+        {label: "Child Minding: R750", value: "ChildMinding"},
+        {label: "Cooking: R750", value: "Cooking"},
+        {label: "Garden: R750", value: "Garden"},
+        ]}
+        checkedValues={courses}
+        onChange={setCourses}
+        />
+
+      <Button
+      onPress={() => {
+        alert(`Chosen course(s): ${courses}`);
+      }}
+      >Submit</Button>
     </View>
       </ScrollView>
     </SafeAreaView>
@@ -218,6 +256,27 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     marginVertical: 5,
+  },
+  CalculatorContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    justifyContent: "center",
+    paddingHorizontal: 25,
+    marginTop: 35,
+    marginBottom: 25,
+  },
+  mainHeader: {
+    marginBottom: 15,
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#06b6d4" + "ee",
+    textTransform: "uppercase",
+  },
+  header: {
+    marginBottom: 15,
+    fontSize: 16,
+    color: "#374151"
   },
 });
 
