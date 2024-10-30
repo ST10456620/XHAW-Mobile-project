@@ -20,7 +20,7 @@ const DrawerNavigation = () => {
         <Drawer.Screen name="Home" component={Home}/>
         <Drawer.Screen name="Profile" component={Profile} options={{drawerLabel: "Contact us"}}/>
         <Drawer.Screen name="Enroll" component={enroll} options={{drawerLabel: "Enroll now"}}/>
-        <Drawer.Screen name="SignOut" component={StackNavigation} />
+        <Drawer.Screen name="SignOut" component={StackNavigation} options={{headerShown: false}}/>
  
    </Drawer.Navigator>
   )
