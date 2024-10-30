@@ -23,7 +23,16 @@ const images = [
   { source: fifthImage, title: 'Life Skills' },
   { source: sixthImage, title: 'Sewing' },
   { source: seventhImage, title: 'Landscaping' },
-];
+];function isEmpty(value) {
+  return (
+    // null or undefined
+    (value == null) ||
+    // has length and it's zero
+    (value.hasOwnProperty('length') && value.length === 0) ||
+    // is an Object and has no keys
+    (value.constructor === Object && Object.keys(value).length === 0)
+  )
+};
 
 const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
   const handleImageClick = (title: string) => {
@@ -74,8 +83,8 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
         </View>
     
     <View style={styles.dropdowncontainer}>
-    <TouchableOpacity style={styles.dropdown} onPress={toggleDropdown}>
-        <Text style={styles.dropdownLabel}>Discount</Text>
+    <TouchableOpacity style={styles.contactButton} onPress={toggleDropdown}>
+        <Text style={styles.contactButtonText}>Discount</Text>
       </TouchableOpacity>
       
       {isDropdownVisible && (
@@ -89,34 +98,11 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
     </View>
     
     {/*Calculator*/}
-    <View style={styles.CalculatorContainer}>
-    {/*Heading*/}
-  <Text style={styles.mainHeader}>Total and discount calculator</Text>
+    <View style={styles.CalculatorContainer}>     
+  <TouchableOpacity style={styles.contactButton} onPress={() => navigation.navigate('Enroll')}>
+          <Text style={styles.contactButtonText}>Enroll now</Text>
+        </TouchableOpacity>
 
-    {/*Sub-Heading*/}
-  <Text style={styles.header}>Choose all the following course(s):</Text>
-
-
-        {/* Label is used to display the name and value is the name that goes to the server*/}
-      <CheckBox 
-      options={[
-        {label: "First Aid: R1500", value: "FirstAid"},
-        {label: "Sewing: R1500", value: "Sewing"},
-        {label: "Landscaping: R1500", value: "Landscaping"},
-        {label: "Life Skill: R1500", value: "LifeSkill"},
-        {label: "Child Minding: R750", value: "ChildMinding"},
-        {label: "Cooking: R750", value: "Cooking"},
-        {label: "Garden: R750", value: "Garden"},
-        ]}
-        checkedValues={courses}
-        onChange={setCourses}
-        />
-
-      <Button
-      onPress={() => {
-        alert(`Chosen course(s): ${courses}`);
-      }}
-      >Submit</Button>
     </View>
       </ScrollView>
     </SafeAreaView>
@@ -203,13 +189,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#4CAF50', // Green for discount text
+    color: '#4CAF50',
   },
   confirmButton: {
     marginTop: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    backgroundColor: '#007BFF',
+    backgroundColor: '#11c21f', // Updated to new green
     borderRadius: 5,
   },
   confirmButtonText: {
@@ -224,7 +210,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 18,
-
     marginBottom: 10,
     textAlign: 'center',
   },
@@ -234,7 +219,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   dropdown: {
-    backgroundColor: '#38b6ff',
+    backgroundColor: '#11c21f', // Updated to new green
     borderRadius: 10,
     padding: 15,
     shadowColor: 'grey',
@@ -270,7 +255,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
-    color: "#06b6d4" + "ee",
+    color: "#11c21f" + "ee",  // Updated to new green
     textTransform: "uppercase",
   },
   header: {
@@ -278,8 +263,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#374151"
   },
+  contactButton: {
+    marginTop: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    backgroundColor: '#11c21f', // Updated to new green
+    borderRadius: 10,
+    padding: 15,
+    shadowColor: 'grey',
+    elevation: 5, // For Android shadow effect
+    marginBottom: 10,
+  },
+  contactButtonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
 });
-
 
 
 export default Home;

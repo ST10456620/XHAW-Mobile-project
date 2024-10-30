@@ -1,3 +1,4 @@
+import { RouteProp } from '@react-navigation/native';
 import React from 'react';
 import {
   View,
@@ -9,11 +10,15 @@ import {
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
+type DetailProps = {
+  route: RouteProp<{ params: { title: string; imageBig: any } }, 'params'>;
+  navigation: any; // You can replace 'any' with a more specific type if you have it
+};
 
 
 const height = Dimensions.get('window').height;
 
-const Detail: React.FC<{ route: { params: { title: string, imageBig: any } }, navigation: any }> = ({ route, navigation }) => {
+const Detail: React.FC<DetailProps> = ({ route, navigation }) => {
   const { title, imageBig } = route.params;
 
   // Debugging to check the title passed

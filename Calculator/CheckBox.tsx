@@ -1,45 +1,44 @@
+import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const CheckBox = ({options, checkedValues, onChange, style}) => {
-
+const CheckBox = ({ options, checkedValues, onChange, style }) => {
     let updatedCheckValues = [...checkedValues];
 
-    return(
+    return (
         <View style={[styles.container, style]}>
             {options.map((option) => {
-                let active = updatedCheckValues.includes(option.value)
+                const active = updatedCheckValues.includes(option.value);
 
                 return (
-                    <TouchableOpacity 
-                    style={active ? [styles.checkBox, styles.activeCheckBox] : styles.checkBox}
-                    onPress={() => {
-                        if (active) {
-                            updatedCheckValues = updatedCheckValues.filter(
-                                (checkedValues) => checkedValues !== option.value
-                            );
-                            return onChange(updatedCheckValues);
-                        }
-                        updatedCheckValues.push(option.value);
-                        onChange(updatedCheckValues);
-                    }}
-                    key={option.value}
+                    <TouchableOpacity
+                        style={active ? [styles.checkBox, styles.activeCheckBox] : styles.checkBox}
+                        onPress={() => {
+                            if (active) {
+                                updatedCheckValues = updatedCheckValues.filter(
+                                    (checkedValue) => checkedValue !== option.value
+                                );
+                                return onChange(updatedCheckValues);
+                            }
+                            updatedCheckValues.push(option.value);
+                            onChange(updatedCheckValues);
+                        }}
+                        key={option.value}
                     >
-                        <MaterialIcons 
-                        name={active ? "check-box" : "check-box-outline-blank"}
-                        size={24}
-                        color={active ? "#06b6d4" : "#64748b"}
+                        <MaterialIcons
+                            name={active ? "check-box" : "check-box-outline-blank"}
+                            size={24}
+                            color={active ? "#06b6d4" : "#64748b"}
                         />
                         <Text style={active ? [styles.text, styles.activeText] : styles.text}>{option.label}</Text>
                     </TouchableOpacity>
-                )
-
+                );
             })}
-         
         </View>
-    )
+    );
 };
 
+// Styles for CheckBox
 const styles = StyleSheet.create({
     container: {
         width: "100%",
@@ -65,6 +64,6 @@ const styles = StyleSheet.create({
     activeText: {
         color: '#374151',
     },
-})
+});
 
 export default CheckBox;
